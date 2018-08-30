@@ -81,10 +81,11 @@ def map_add_circles(folium_map, trace, **kwargs):
     return folium_map
 
 
-def map_trace(trace):
-    folium_map = folium.Map(location=BASE_POINT,
-                            zoom_start=14,
-                            tiles="openstreetmap")
+def map_trace(trace, folium_map=None):
+    if folium_map is None:
+        folium_map = folium.Map(location=BASE_POINT,
+                                zoom_start=14,
+                                tiles="openstreetmap")
     length = len(trace)
     # add line between points on the trace
     line = folium.features.ColorLine([(p.latitude, p.longitude) for p in trace], [0, ] * (length - 1),
